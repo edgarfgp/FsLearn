@@ -5,6 +5,6 @@ You an use this template by :
  - Clonning the repo locally and then rename the project to whatever you want
  
 ## Pre-requisites
-
+* F# 6
 * .NET 6
 * iOS workload for .NET (`sudo dotnet workload install ios `)
