@@ -3,7 +3,7 @@ namespace Net6iOSTemplate
 open UIKit
 open Foundation
 
-[<Register("SceneDelegate")>]
+[<Register(nameof SceneDelegate)>]
 type SceneDelegate() =
     inherit UIResponder() //IUIWindowSceneDelegate
 
