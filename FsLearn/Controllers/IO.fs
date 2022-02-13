@@ -9,8 +9,7 @@ open FsToolkit.ErrorHandling
 module IO =
 
     [<Literal>]
-    let URL =
-        "https://europe-west1-revolut-230009.cloudfunctions.net/revolut-ios?pairs=USDGBP&pairs=GBPUSD"
+    let URL =""
 
     let parseJson (json: string) =
         JsonSerializer.Deserialize<{| GBPUSD: float; USDGBP: float |}>(json)
