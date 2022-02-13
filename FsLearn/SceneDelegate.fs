@@ -1,6 +1,6 @@
-namespace Net6iOSTemplate
+namespace FsLearn
 
-open Net6iOSTemplate.Controllers
+open FsLearn.Controllers
 open UIKit
 open Foundation
 
@@ -17,7 +17,7 @@ type SceneDelegate() =
         let win =
             new UIWindow(scene.CoordinateSpace.Bounds)
 
-        win.RootViewController <- new ExchangeRatesController()
+        win.RootViewController <- new MainViewController()
         this.Window <- win
         win.WindowScene <- scene
         win.MakeKeyAndVisible()

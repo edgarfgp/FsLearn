@@ -1,10 +1,10 @@
-namespace Net6iOSTemplate.Views
+namespace FsLearn.Views
 
 open System
 open CoreGraphics
 open ObjCRuntime
 open UIKit
-open Net6iOSTemplate
+open FsLearn
 
 type CarouselCell(handle: IntPtr) as self =
     inherit UICollectionViewCell(handle)

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 25.0.1700.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Net6iOSTemplate", "Net6iOSTemplate\Net6iOSTemplate.fsproj", "{37187056-6E99-4E71-A85D-A147C0A01003}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FsLearn", "FsLearn\FsLearn.fsproj", "{37187056-6E99-4E71-A85D-A147C0A01003}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

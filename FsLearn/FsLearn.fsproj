@@ -33,9 +33,8 @@
     <Compile Include="ViewExtensions.fs" />
     <Compile Include="Views\Cells.fs" />
     <Compile Include="Views\CarouselView.fs" />
-    <Compile Include="Controllers\ExchangeCore.fs" />
+    <Compile Include="Controllers\IO.fs" />
     <Compile Include="Controllers\ExchangeRates.fs" />
-    <Compile Include="Controllers\Onboarding.fs" />
     <Compile Include="SceneDelegate.fs" />
     <Compile Include="AppDelegate.fs" />
     <Compile Include="Main.fs" />

@@ -1,11 +1,11 @@
-namespace Net6iOSTemplate.Views
+namespace FsLearn.Views
 
 open System
 open ObjCRuntime
 open UIKit
-open Net6iOSTemplate.Extensions
+open FsLearn.Extensions
 
-type ExchangeCell(handle: IntPtr) as self =
+type CustomCell(handle: IntPtr) as self =
     inherit UICollectionViewCell(handle)
     let overallContainer = new UIStackView()
     let firstCurrencyValue = new UILabel()
@@ -25,7 +25,7 @@ type ExchangeCell(handle: IntPtr) as self =
 
         firstCurrencyValue.Font <- UIFont.BoldSystemFontOfSize(nfloat 18.)
 
-    static member val CellId = nameof ExchangeCell
+    static member val CellId = nameof CustomCell
 
     member this.SetupLabel() =
         let label = new UILabel()

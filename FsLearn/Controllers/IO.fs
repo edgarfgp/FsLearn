@@ -1,4 +1,4 @@
-namespace Net6iOSTemplate.Controllers
+namespace FsLearn.Controllers
 
 open FSharp.Control
 open FsHttp.DslCE
@@ -6,7 +6,7 @@ open FsHttp
 open System.Text.Json
 open FsToolkit.ErrorHandling
 
-module ExchangeCore =
+module IO =
 
     [<Literal>]
     let URL =

@@ -1,15 +1,15 @@
-namespace Net6iOSTemplate.Controllers
+namespace FsLearn.Controllers
 
 
 open System
 open CoreFoundation
 open CoreGraphics
 open FSharp.Control
-open Net6iOSTemplate.Views
+open FsLearn.Views
 open ObjCRuntime
 open UIKit
 
-type ExchangeRatesController() as self =
+type MainViewController() as self =
     inherit UIViewController()
 
     let mutable getExchangesSub: IDisposable = null
@@ -64,7 +64,7 @@ type ExchangeRatesController() as self =
 
             override this.GetCell(collectionView: UICollectionView, indexPath) =
                 let cell =
-                    collectionView.DequeueReusableCell(ExchangeCell.CellId, indexPath) :?> ExchangeCell
+                    collectionView.DequeueReusableCell(CustomCell.CellId, indexPath) :?> CustomCell
 
                 let exchange = exchanges.[indexPath.Row]
                 cell.SetUp(exchange)
@@ -75,7 +75,7 @@ type ExchangeRatesController() as self =
 
         self.View.BackgroundColor <- UIColor.SystemBackgroundColor
 
-        collectionView.Value.RegisterClassForCell(typeof<ExchangeCell>, ExchangeCell.CellId)
+        collectionView.Value.RegisterClassForCell(typeof<CustomCell>, CustomCell.CellId)
         container.Value.AddArrangedSubview collectionView.Value
         container.Value.AddArrangedSubview startButton.Value
         container.Value.AddArrangedSubview stopButton.Value

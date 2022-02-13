@@ -1,8 +1,7 @@
-namespace Net6iOSTemplate
+namespace FsLearn
 
 open System
 open CoreFoundation
-open CoreGraphics
 open Foundation
 open ObjCRuntime
 open UIKit

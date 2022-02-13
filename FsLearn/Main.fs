@@ -1,4 +1,4 @@
-﻿namespace Net6iOSTemplate
+﻿namespace FsLearn
 
 open UIKit
 

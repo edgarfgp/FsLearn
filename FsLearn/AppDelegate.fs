@@ -1,7 +1,7 @@
-﻿namespace Net6iOSTemplate
+﻿namespace FsLearn
 
 
-open Net6iOSTemplate.Controllers
+open FsLearn.Controllers
 open UIKit
 open Foundation
 
