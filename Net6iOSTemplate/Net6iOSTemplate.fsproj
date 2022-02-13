@@ -1,15 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net6.0-ios</TargetFramework>
-    <RuntimeIdentifier>iossimulator-x64</RuntimeIdentifier>
     <OutputType>Exe</OutputType>
-    <LangVersion>preview</LangVersion>
-    <SupportedOSPlatformVersion>15.0</SupportedOSPlatformVersion>
-</PropertyGroup>
+  </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <CodesignKey>iPhone Developer</CodesignKey>
   </PropertyGroup>
   <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\Contents.json" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon_20pt%402x.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon_20pt%403x.png" />
@@ -29,11 +27,23 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon_76pt%402x.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon_83.5%402x.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon.png" />
-    <ImageAsset Include="Assets.xcassets\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\image_onboarding.imageset\Contents.json" />
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
+    <Compile Include="ViewExtensions.fs" />
+    <Compile Include="Views\Cells.fs" />
+    <Compile Include="Views\CarouselView.fs" />
+    <Compile Include="Controllers\ExchangeCore.fs" />
+    <Compile Include="Controllers\ExchangeRates.fs" />
+    <Compile Include="Controllers\Onboarding.fs" />
     <Compile Include="SceneDelegate.fs" />
     <Compile Include="AppDelegate.fs" />
     <Compile Include="Main.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="FSharp.Control.AsyncSeq" Version="3.2.1" />
+    <PackageReference Include="FsHttp" Version="7.0.0" />
+    <PackageReference Include="FsToolkit.ErrorHandling" Version="2.13.0" />
+    <PackageReference Include="System.Text.Json" Version="6.0.1" />
   </ItemGroup>
 </Project>
