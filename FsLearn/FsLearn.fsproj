@@ -11,6 +11,7 @@
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\Contents.json" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
+    <SceneKitAsset Include="Models.scnassets\woolly-mammoth-skeleton.dae" />
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
     <Compile Include="ViewExtensions.fs" />

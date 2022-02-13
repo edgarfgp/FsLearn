@@ -1,117 +1,57 @@
 namespace FsLearn.Controllers
 
 
-open System
-open CoreFoundation
-open CoreGraphics
-open FSharp.Control
-open FsLearn.Views
-open ObjCRuntime
+
+open Foundation
+open SceneKit
 open UIKit
 
 type MainViewController() as self =
     inherit UIViewController()
 
-    let mutable getExchangesSub: IDisposable = null
-    let mutable startSub: IDisposable = null
+    let mutable cameraNode: SCNNode = null
 
-    let mutable stopSub: IDisposable = null
-
-    let exchanges: ResizeArray<string> = ResizeArray<string>()
-
-    let collectionView =
-        lazy
-            (let collectionView =
-                new UICollectionView(self.View.Frame, new UICollectionViewFlowLayout())
-             collectionView.TranslatesAutoresizingMaskIntoConstraints <- false
-             collectionView)
-
-    let startButton =
-        lazy
-            (let button = new UIButton(UIButtonType.System)
-             button.SetTitle("Start", UIControlState.Normal)
-             button.SetTitleColor(UIColor.Blue, UIControlState.Normal)
-             button)
-
-    let stopButton =
-        lazy
-            (let button = new UIButton(UIButtonType.System)
-             button.SetTitle("Stop", UIControlState.Normal)
-             button.SetTitleColor(UIColor.Blue, UIControlState.Normal)
-             button)
-
-
-    let container =
-        lazy
-            (let container = new UIStackView()
-             container.Axis <- UILayoutConstraintAxis.Vertical
-             container.Spacing <- 16
-             container.TranslatesAutoresizingMaskIntoConstraints <- false
-             container)
-
-
-    let overViewDelegate =
-        { new UICollectionViewDelegateFlowLayout() with
-            override this.GetSizeForItem(collectionView, layout, indexPath) =
-                CGSize(collectionView.Frame.Width - nfloat 16., nfloat 60.)
-
-            member this.ItemSelected(collectionView, indexPath) = () }
-
-    let dataSource =
-        { new UICollectionViewDataSource() with
-
-            override this.GetItemsCount(_, _) = nint exchanges.Count
-
-            override this.GetCell(collectionView: UICollectionView, indexPath) =
-                let cell =
-                    collectionView.DequeueReusableCell(CustomCell.CellId, indexPath) :?> CustomCell
-
-                let exchange = exchanges.[indexPath.Row]
-                cell.SetUp(exchange)
-                upcast cell }
-
-    override _.ViewDidLoad() =
+    override this.ViewDidLoad() =
         base.ViewDidLoad()
 
-        self.View.BackgroundColor <- UIColor.SystemBackgroundColor
+        let scene =
+            SCNScene.FromFile(
+                "woolly-mammoth-skeleton",
+                "Models.scnassets",
+                SCNSceneLoadingOptions(new NSDictionary())
+            )
 
-        collectionView.Value.RegisterClassForCell(typeof<CustomCell>, CustomCell.CellId)
-        container.Value.AddArrangedSubview collectionView.Value
-        container.Value.AddArrangedSubview startButton.Value
-        container.Value.AddArrangedSubview stopButton.Value
+        cameraNode <- this.SetupCamera(scene)
+        this.SetupLighting(scene)
+        this.SetupSceneView(scene)
 
-        self.View.AddSubview container.Value
+    member this.SetupCamera(scene: SCNScene) =
+        let cameraNode = new SCNNode()
+        cameraNode.Camera <- new SCNCamera()
+        cameraNode.Position <- SCNVector3(float32 0, float32 0, float32 0)
+        scene.RootNode.AddChildNode(cameraNode)
+        cameraNode
 
-        NSLayoutConstraint.ActivateConstraints(
-            [| container.Value.TopAnchor.ConstraintEqualTo(self.View.SafeAreaLayoutGuide.TopAnchor, nfloat 0.)
-               container.Value.LeadingAnchor.ConstraintEqualTo(self.View.SafeAreaLayoutGuide.LeadingAnchor, nfloat 0.)
-               container.Value.TrailingAnchor.ConstraintEqualTo(self.View.SafeAreaLayoutGuide.TrailingAnchor, nfloat 0.)
-               container.Value.BottomAnchor.ConstraintEqualTo(self.View.SafeAreaLayoutGuide.BottomAnchor, nfloat -16.) |]
-        )
+    member this.SetupLighting(scene: SCNScene) =
+        let lightNode = new SCNNode()
+        lightNode.Light <- new SCNLight()
+        lightNode.Light.LightType <- SCNLightType.Area
+        lightNode.Position <- SCNVector3(float32 0, float32 0, float32 0)
+        scene.RootNode.AddChildNode(lightNode)
 
-        collectionView.Value.DataSource <- dataSource
-        collectionView.Value.Delegate <- overViewDelegate
+        let ambientLightNode = new SCNNode()
+        ambientLightNode.Light <- new SCNLight()
+        ambientLightNode.Light.LightType <- SCNLightType.Ambient
+        ambientLightNode.Light.Color <- UIColor.SystemBackgroundColor
+        scene.RootNode.AddChildNode(ambientLightNode)
 
-        startSub <-
-            startButton.Value.TouchUpInside.Subscribe
-                (fun _ ->
-                    getExchangesSub <-
-                        IO.getExchanges
-                        |> Observable.subscribe
-                            (fun x ->
-                                exchanges.Add $"{x}"
-                                DispatchQueue.MainQueue.DispatchAsync(fun _ -> collectionView.Value.ReloadData())))
+    member this.SetupSceneView(scene: SCNScene) =
+        let sceneView = new SCNView(self.View.Bounds)
+        sceneView.Scene <- scene
+        sceneView.AllowsCameraControl <- true
+        sceneView.ShowsStatistics <- true
+        sceneView.BackgroundColor <- UIColor.Black
 
-        stopSub <- stopButton.Value.TouchUpInside.Subscribe(fun _ -> getExchangesSub.Dispose())
-
-
-    interface IDisposable with
-        member this.Dispose() =
-            if startSub <> null then
-                startSub.Dispose()
-
-            if stopSub <> null then
-                stopSub.Dispose()
-
-            if getExchangesSub <> null then
-                getExchangesSub.Dispose()
+        let tapGesture = new UITapGestureRecognizer()
+        sceneView.AddGestureRecognizer(tapGesture)
+        self.View.AddSubview(sceneView)
