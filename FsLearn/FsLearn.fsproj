@@ -1,6 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net6.0-ios</TargetFramework>
+    <EnableAssemblyILStripping>false</EnableAssemblyILStripping>
+    <SupportedOSPlatformVersion>15.0</SupportedOSPlatformVersion>
     <OutputType>Exe</OutputType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -9,32 +11,13 @@
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\Contents.json" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon_20pt%402x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon_20pt%403x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon_29pt%402x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon_29pt%403x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon_40pt%402x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon_40pt%403x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon_60pt%402x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon_60pt%403x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon_20pt.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon_20pt%402x-1.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon_29pt.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon_29pt%402x-1.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon_40pt.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon_40pt%402x-1.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon_76pt.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon_76pt%402x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon_83.5%402x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon.png" />
-    <ImageAsset Include="Assets.xcassets\image_onboarding.imageset\Contents.json" />
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
     <Compile Include="ViewExtensions.fs" />
     <Compile Include="Views\Cells.fs" />
     <Compile Include="Views\CarouselView.fs" />
     <Compile Include="Controllers\IO.fs" />
-    <Compile Include="Controllers\ExchangeRates.fs" />
+    <Compile Include="Controllers\MainViewController.fs" />
     <Compile Include="SceneDelegate.fs" />
     <Compile Include="AppDelegate.fs" />
     <Compile Include="Main.fs" />

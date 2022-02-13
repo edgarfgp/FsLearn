@@ -96,7 +96,7 @@ type MainViewController() as self =
             startButton.Value.TouchUpInside.Subscribe
                 (fun _ ->
                     getExchangesSub <-
-                        ExchangeCore.getExchanges
+                        IO.getExchanges
                         |> Observable.subscribe
                             (fun x ->
                                 exchanges.Add $"{x}"
