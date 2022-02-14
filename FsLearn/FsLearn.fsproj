@@ -22,6 +22,7 @@
     <Compile Include="SceneDelegate.fs" />
     <Compile Include="AppDelegate.fs" />
     <Compile Include="Main.fs" />
+    <Content Include="woolly-mammoth-skeleton.png" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="FSharp.Control.AsyncSeq" Version="3.2.1" />

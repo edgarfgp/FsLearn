@@ -9,28 +9,24 @@ open UIKit
 type MainViewController() as self =
     inherit UIViewController()
 
-    let mutable cameraNode: SCNNode = null
-
     override this.ViewDidLoad() =
         base.ViewDidLoad()
 
         let scene =
-            SCNScene.FromFile(
-                "woolly-mammoth-skeleton",
-                "Models.scnassets",
-                SCNSceneLoadingOptions(new NSDictionary())
-            )
+            SCNScene.FromFile("woolly-mammoth-skeleton", "Models.scnassets", SCNSceneLoadingOptions())
 
-        cameraNode <- this.SetupCamera(scene)
+        this.SetupCamera(scene)
         this.SetupLighting(scene)
-        this.SetupSceneView(scene)
+
+        let sceneView = this.SetupSceneView(scene)
+        self.View.AddSubview(sceneView)
 
     member this.SetupCamera(scene: SCNScene) =
         let cameraNode = new SCNNode()
         cameraNode.Camera <- new SCNCamera()
-        cameraNode.Position <- SCNVector3(float32 0, float32 0, float32 0)
+        cameraNode.Camera.UsesOrthographicProjection <- true
+        cameraNode.Camera.AutomaticallyAdjustsZRange <- true
         scene.RootNode.AddChildNode(cameraNode)
-        cameraNode
 
     member this.SetupLighting(scene: SCNScene) =
         let lightNode = new SCNNode()
@@ -54,4 +50,4 @@ type MainViewController() as self =
 
         let tapGesture = new UITapGestureRecognizer()
         sceneView.AddGestureRecognizer(tapGesture)
-        self.View.AddSubview(sceneView)
+        sceneView
