@@ -17,7 +17,7 @@ type SceneDelegate() =
         let win =
             new UIWindow(scene.CoordinateSpace.Bounds)
 
-        win.RootViewController <- new MainViewController()
+        win.RootViewController <- new ShipViewController()
         this.Window <- win
         win.WindowScene <- scene
         win.MakeKeyAndVisible()

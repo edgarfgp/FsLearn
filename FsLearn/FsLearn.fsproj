@@ -12,6 +12,7 @@
     <ImageAsset Include="Assets.xcassets\Contents.json" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
     <SceneKitAsset Include="Models.scnassets\woolly-mammoth-skeleton.dae" />
+    <SceneKitAsset Include="Models.scnassets\ship.scn" />
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
     <Compile Include="ViewExtensions.fs" />
@@ -19,6 +20,7 @@
     <Compile Include="Views\CarouselView.fs" />
     <Compile Include="Controllers\IO.fs" />
     <Compile Include="Controllers\MainViewController.fs" />
+    <Compile Include="Controllers\ShipViewController.fs" />
     <Compile Include="SceneDelegate.fs" />
     <Compile Include="AppDelegate.fs" />
     <Compile Include="Main.fs" />
