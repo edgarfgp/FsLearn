@@ -1,7 +1,6 @@
 ﻿namespace FsLearn
 
 
-open FsLearn.Controllers
 open UIKit
 open Foundation
 
@@ -12,13 +11,13 @@ type AppDelegate() =
     interface IUIApplicationDelegate
 
     [<Export("application:didFinishLaunchingWithOptions:")>]
-    member this.FinishedLaunching(application: UIApplication, launchOptions: NSDictionary) : bool = true
+    member this.FinishedLaunching(_: UIApplication, _: NSDictionary) : bool = true
 
     [<Export("application:configurationForConnectingSceneSession:options:")>]
     member this.GetConfiguration
         (
-            application: UIApplication,
+            _: UIApplication,
             sceneSession: UISceneSession,
-            options: UISceneConnectionOptions
+            _: UISceneConnectionOptions
         ) =
         UISceneConfiguration.Create("Default Configuration", sceneSession.Role)

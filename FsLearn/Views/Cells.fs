@@ -2,6 +2,8 @@ namespace FsLearn.Views
 
 open System
 open ObjCRuntime
+open System.Runtime.InteropServices
+
 open UIKit
 open FsLearn.Extensions
 
@@ -21,17 +23,17 @@ type CustomCell(handle: IntPtr) as self =
         overallContainer.Distribution <- UIStackViewDistribution.FillProportionally
         firstCurrencyValue.TranslatesAutoresizingMaskIntoConstraints <- false
 
-        firstCurrencyValue.Lines <- nint 0
+        firstCurrencyValue.Lines <- 0
 
-        firstCurrencyValue.Font <- UIFont.BoldSystemFontOfSize(nfloat 18.)
+        firstCurrencyValue.Font <- UIFont.BoldSystemFontOfSize(NFloat 18.)
 
     static member val CellId = nameof CustomCell
 
     member this.SetupLabel() =
         let label = new UILabel()
-        label.Lines <- nint 0
+        label.Lines <- 0
         label.TranslatesAutoresizingMaskIntoConstraints <- false
-        label.Font <- UIFont.BoldSystemFontOfSize(nfloat 18.)
+        label.Font <- UIFont.BoldSystemFontOfSize(NFloat 18.)
         label
 
     member self.SetUp(text) = firstCurrencyValue.Text <- text

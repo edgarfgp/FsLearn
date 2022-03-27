@@ -2,7 +2,6 @@ namespace FsLearn.Controllers
 
 
 
-open Foundation
 open SceneKit
 open UIKit
 
@@ -38,7 +37,7 @@ type MainViewController() as self =
         let ambientLightNode = new SCNNode()
         ambientLightNode.Light <- new SCNLight()
         ambientLightNode.Light.LightType <- SCNLightType.Ambient
-        ambientLightNode.Light.Color <- UIColor.SystemBackgroundColor
+        ambientLightNode.Light.Color <- UIColor.SystemBackground
         scene.RootNode.AddChildNode(ambientLightNode)
 
     member this.SetupSceneView(scene: SCNScene) =

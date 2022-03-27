@@ -1,9 +1,9 @@
 namespace FsLearn
 
 open System
+open System.Runtime.InteropServices
 open CoreFoundation
 open Foundation
-open ObjCRuntime
 open UIKit
 
 [<AutoOpen>]
@@ -12,9 +12,9 @@ module Extensions =
     type UIImageView with
 
         member ui.RoundedCorners() =
-            ui.Layer.CornerRadius <- nfloat 50.
+            ui.Layer.CornerRadius <- NFloat 50.
             ui.ClipsToBounds <- true
-            ui.Layer.BorderWidth <- nfloat 3.
+            ui.Layer.BorderWidth <- NFloat 3.
 
             ui.Layer.BorderColor = UIColor.White.CGColor
             |> ignore
@@ -42,13 +42,13 @@ module Extensions =
             let bottom = defaultArg bottom (float 0)
 
             NSLayoutConstraint.ActivateConstraints(
-                [| uv.TopAnchor.ConstraintEqualTo(parentView.TopAnchor, nfloat top)
-                   uv.LeadingAnchor.ConstraintEqualTo(parentView.LeadingAnchor, nfloat leading)
-                   uv.TrailingAnchor.ConstraintEqualTo(parentView.TrailingAnchor, nfloat -trailing)
-                   uv.BottomAnchor.ConstraintEqualTo(parentView.BottomAnchor, nfloat -bottom) |]
+                [| uv.TopAnchor.ConstraintEqualTo(parentView.TopAnchor, NFloat top)
+                   uv.LeadingAnchor.ConstraintEqualTo(parentView.LeadingAnchor, NFloat leading)
+                   uv.TrailingAnchor.ConstraintEqualTo(parentView.TrailingAnchor, NFloat -trailing)
+                   uv.BottomAnchor.ConstraintEqualTo(parentView.BottomAnchor, NFloat -bottom) |]
             )
 
-        member uv.ConstraintToParent(parentView: UIView, all: nfloat) =
+        member uv.ConstraintToParent(parentView: UIView, all: NFloat) =
             NSLayoutConstraint.ActivateConstraints(
                 [| uv.TopAnchor.ConstraintEqualTo(parentView.TopAnchor, all)
                    uv.LeadingAnchor.ConstraintEqualTo(parentView.LeadingAnchor, all)
@@ -64,7 +64,7 @@ module Extensions =
                 NSProcessInfo.ProcessInfo.LowPowerModeEnabled
 
             if reduceBlur || lowerPowerIsOn then
-                uv.BackgroundColor <- UIColor.SystemFillColor
+                uv.BackgroundColor <- UIColor.SystemFill
             else
                 let blur =
                     UIBlurEffect.FromStyle(UIBlurEffectStyle.SystemThinMaterial)

@@ -2,7 +2,7 @@ namespace FsLearn.Views
 
 open System
 open CoreGraphics
-open ObjCRuntime
+open System.Runtime.InteropServices
 open UIKit
 open FsLearn
 
@@ -22,17 +22,17 @@ type CarouselCell(handle: IntPtr) as self =
         overallContainer.Distribution <- UIStackViewDistribution.FillProportionally
         firstCurrencyValue.TranslatesAutoresizingMaskIntoConstraints <- false
 
-        firstCurrencyValue.Lines <- nint 0
+        firstCurrencyValue.Lines <- 0
 
-        firstCurrencyValue.Font <- UIFont.BoldSystemFontOfSize(nfloat 18.)
+        firstCurrencyValue.Font <- UIFont.BoldSystemFontOfSize(NFloat 18.)
 
     static member val CellId = nameof CarouselCell
 
     member this.SetupLabel() =
         let label = new UILabel()
-        label.Lines <- nint 0
+        label.Lines <- 0
         label.TranslatesAutoresizingMaskIntoConstraints <- false
-        label.Font <- UIFont.BoldSystemFontOfSize(nfloat 18.)
+        label.Font <- UIFont.BoldSystemFontOfSize(NFloat 18.)
         label
 
     member self.SetUp(text) = firstCurrencyValue.Text <- text
@@ -43,28 +43,28 @@ type CarouselView() as self =
 
     let dataSource =
         lazy
-            ({ new UICollectionViewDataSource() with
+            { new UICollectionViewDataSource() with
 
-                override this.GetItemsCount(_, _) = nint 2
+               override this.GetItemsCount(_, _) = 2
 
-                override this.NumberOfSections _ = nint 1
+               override this.NumberOfSections _ = 1
 
-                override this.GetCell(collectionView: UICollectionView, indexPath) =
-                    let cell =
-                        collectionView.DequeueReusableCell(CarouselCell.CellId, indexPath) :?> CarouselCell
+               override this.GetCell(collectionView: UICollectionView, indexPath) =
+                   let cell =
+                       collectionView.DequeueReusableCell(CarouselCell.CellId, indexPath) :?> CarouselCell
 
-                    cell.SetUp("aasdasdsadad")
-                    upcast cell })
+                   cell.SetUp("aasdasdsadad")
+                   upcast cell }
 
     let createColumnFlowLayout (frame: CGRect) =
         let cellPadding =
-            (frame.Width - nfloat 300.) / nfloat 2.
+            (frame.Width - NFloat 300.) / NFloat 2.
 
         let flowLayout = new UICollectionViewFlowLayout()
         flowLayout.ScrollDirection <- UICollectionViewScrollDirection.Horizontal
-        flowLayout.MinimumLineSpacing <- nfloat cellPadding * nfloat 2.
-        flowLayout.SectionInset <- UIEdgeInsets(nfloat 0., cellPadding, nfloat 0., cellPadding)
-        flowLayout.ItemSize <- CGSize(nfloat 300., nfloat 400.)
+        flowLayout.MinimumLineSpacing <- NFloat cellPadding * NFloat 2.
+        flowLayout.SectionInset <- UIEdgeInsets(NFloat 0., cellPadding, NFloat 0., cellPadding)
+        flowLayout.ItemSize <- CGSize(NFloat 300., NFloat 400.)
         flowLayout
 
     let collectionView =
@@ -84,7 +84,7 @@ type CarouselView() as self =
              pageControl.PageIndicatorTintColor <- UIColor.Gray
              pageControl.CurrentPageIndicatorTintColor <- UIColor.White
              pageControl.TranslatesAutoresizingMaskIntoConstraints <- false
-             pageControl.Pages <- nint 2
+             pageControl.Pages <- 2
              pageControl)
 
     do self.SetupUI()
@@ -100,9 +100,9 @@ type CarouselView() as self =
         collectionView.Value.TopAnchor.ConstraintEqualTo(self.TopAnchor).Active <- true
         collectionView.Value.LeadingAnchor.ConstraintEqualTo(self.LeadingAnchor).Active <- true
         collectionView.Value.TrailingAnchor.ConstraintEqualTo(self.TrailingAnchor).Active <- true
-        collectionView.Value.HeightAnchor.ConstraintEqualTo(nfloat 450).Active <- true
+        collectionView.Value.HeightAnchor.ConstraintEqualTo(NFloat 450).Active <- true
 
-        pageControl.Value.TopAnchor.ConstraintEqualTo(collectionView.Value.BottomAnchor, nfloat 16).Active <- true
+        pageControl.Value.TopAnchor.ConstraintEqualTo(collectionView.Value.BottomAnchor, NFloat 16).Active <- true
         pageControl.Value.CenterXAnchor.ConstraintEqualTo(self.CenterXAnchor).Active <- true
-        pageControl.Value.WidthAnchor.ConstraintEqualTo(nfloat 150).Active <- true
-        pageControl.Value.HeightAnchor.ConstraintEqualTo(nfloat 50).Active <- true
+        pageControl.Value.WidthAnchor.ConstraintEqualTo(NFloat 150).Active <- true
+        pageControl.Value.HeightAnchor.ConstraintEqualTo(NFloat 50).Active <- true

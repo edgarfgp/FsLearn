@@ -20,6 +20,7 @@
     <Compile Include="Views\CarouselView.fs" />
     <Compile Include="Controllers\IO.fs" />
     <Compile Include="Controllers\MainViewController.fs" />
+    <Compile Include="Controllers\SceneKitPrimitives.fs" />
     <Compile Include="Controllers\ShipViewController.fs" />
     <Compile Include="SceneDelegate.fs" />
     <Compile Include="AppDelegate.fs" />

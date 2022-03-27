@@ -20,7 +20,7 @@ module IO =
                 do! Async.Sleep 1000
                 let! request = httpAsync { GET URL }
                 let response = request |> Response.toText |> parseJson
-                yield response
+                response
         }
 
     let getExchanges =

@@ -1,8 +1,6 @@
 namespace FsLearn.Controllers
 
-open System
 open Foundation
-open ObjCRuntime
 open SceneKit
 open UIKit
 
@@ -24,33 +22,24 @@ type ShipViewController() as self =
         scene.RootNode.AddChildNode(cameraNode)
 
         // place the camera
-        cameraNode.Position <- new SCNVector3(float32 0, float32 0, float32 15)
+        cameraNode.Position <- SCNVector3(float32 0, float32 0, float32 15)
+
+                // retrieve the ship node
+        let _ =
+            scene.RootNode.FindChildNode("ship", true)
+
+        // animate the 3d object
+        //ship.RunAction(SCNAction.RepeatActionForever(SCNAction.RotateBy(nfloat 0, nfloat 2, nfloat 0, 1.)))
 
         // create and add a light to the scene
         let lightNode = new SCNNode()
         lightNode.Light <- new SCNLight()
-        lightNode.Light.LightType <- SCNLightType.Omni
-        lightNode.Position <- new SCNVector3(float32 0, float32 10, float32 10)
+        lightNode.CastsShadow <- true
+        lightNode.Light.LightType <- SCNLightType.Spot
+        lightNode.Position <- SCNVector3(float32 4, float32 7, float32 6)
         scene.RootNode.AddChildNode(lightNode)
-
-        // create and add an ambient light to the scene
-        let ambientLightNode = new SCNNode()
-        ambientLightNode.Light <- new SCNLight()
-        ambientLightNode.Light.LightType <- SCNLightType.Ambient
-        ambientLightNode.Light.Color <- UIColor.DarkGray
-        scene.RootNode.AddChildNode(ambientLightNode)
-
-        // retrieve the ship node
-        let ship =
-            scene.RootNode.FindChildNode("ship", true)
-
-        // animate the 3d object
-        ship.RunAction(SCNAction.RepeatActionForever(SCNAction.RotateBy(nfloat 0, nfloat 2, nfloat 0, 1.)))
-
-
         // retrieve the SCNView
         sceneView <- new SCNView(self.View.Bounds)
-
         // set the scene to the view
         sceneView.Scene <- scene
 
