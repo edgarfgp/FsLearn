@@ -7,3 +7,6 @@
 
     - Load a SceneKit scene (.scn)
 ![ship](FsLearn/ship.gif)
+
+    - SceneKit primities
+![primitives](FsLearn/primitives.png)
