@@ -18,7 +18,6 @@
     <Compile Include="ViewExtensions.fs" />
     <Compile Include="Views\Cells.fs" />
     <Compile Include="Views\CarouselView.fs" />
-    <Compile Include="Controllers\IO.fs" />
     <Compile Include="Controllers\MainViewController.fs" />
     <Compile Include="Controllers\SceneKitPrimitives.fs" />
     <Compile Include="Controllers\ShipViewController.fs" />
@@ -29,9 +28,7 @@
     <Content Include="ship.gif" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="FSharp.Control.AsyncSeq" Version="3.2.1" />
-    <PackageReference Include="FsHttp" Version="7.0.0" />
+    <PackageReference Include="FsHttp" Version="9.1.1" />
     <PackageReference Include="FsToolkit.ErrorHandling" Version="2.13.0" />
-    <PackageReference Include="System.Text.Json" Version="6.0.1" />
   </ItemGroup>
 </Project>

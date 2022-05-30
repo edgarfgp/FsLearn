@@ -68,7 +68,7 @@ type ShipViewController() as self =
         // check that we clicked on at least one object
         if hitResults.Length > 0 then
             // retrieved the first clicked object
-            let result = hitResults[0]
+            let result = hitResults.[0]
             // get its material
             let material = result.Node.Geometry.FirstMaterial
 
