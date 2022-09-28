@@ -9,7 +9,7 @@ type PrimitivesScene() as self =
 
     let plane =
         let plane = SCNPlane.Create(NFloat 1., NFloat 1.)
-        plane.FirstMaterial.Diffuse.Contents <- UIColor.Blue
+        plane.FirstMaterial.Diffuse.Contents <- UIColor.Red
         let planeNode = SCNNode.FromGeometry(plane)
         planeNode
 
@@ -38,7 +38,7 @@ type PrimitivesScene() as self =
 
     let torus =
         let torus = SCNTorus.Create(NFloat 1., NFloat 0.3)
-        torus.FirstMaterial.Diffuse.Contents <- UIColor.White
+        torus.FirstMaterial.Diffuse.Contents <- UIColor.Brown
         let torusNode = SCNNode.FromGeometry(torus)
         torusNode.Position <- SCNVector3(float32 -3., float32 0., float32 0.)
         torusNode
